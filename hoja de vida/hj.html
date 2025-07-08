@@ -3,48 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hoja de Vida</title>
+    <title>Hoja de Vida - Nicolas Carmona</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
+            padding: 0;
+            background-color: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
         }
         .container {
             max-width: 800px;
-            margin: auto;
+            margin: 30px auto;
             background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 20px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
-        h1, h2 {
-            color: #333;
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 4px solid #007bff;
+        }
+        .main-title {
+            color: #007bff;
+            margin-bottom: 5px;
+            font-size: 2.2em;
+            font-weight: 600;
+        }
+        .subtitle {
+            color: #555;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+        .section-title {
+            color: #0056b3;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 8px;
+            margin-top: 25px;
+            margin-bottom: 20px;
+            font-size: 1.6em;
         }
         p {
             margin-bottom: 10px;
+            font-size: 1em;
+        }
+        strong {
+            color: #0056b3;
+            font-weight: 600;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .section {
+            margin-bottom: 25px;
+        }
+        .contact-info p {
+            margin-bottom: 8px;
+        }
+        ul {
+            padding-left: 20px;
+            list-style-type: disc;
+        }
+        li {
+            margin-bottom: 8px;
+        }
+        .education-item, .experience-item, .project-item {
+            margin-bottom: 15px;
+        }
+        .item-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #333;
+        }
+        .item-subtitle {
+            font-size: 0.95em;
+            color: #555;
+            margin-bottom: 5px;
+        }
+        .item-date {
+            font-size: 0.9em;
+            color: #777;
+            font-style: italic;
+        }
+        .skills-list {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .skills-list li {
+            display: inline-block;
+            background-color: #e9ecef;
+            color: #007bff;
+            padding: 5px 10px;
+            margin-right: 8px;
+            margin-bottom: 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <img src= https://cnnespanol.cnn.com/wp-content/uploads/2016/01/selfie-monkey.jpg?quality=100&strip=info&w=320&h=240&crop=1 alt="Foto con mi broki" style="max-width: 200px;">
-        <h1>Hoja de Vida</h1>
-        <h2>Datos Personales</h2>
-        <p><strong>Nombre:</strong> Nicolas Santiago Carmona Giraldo</p>
-        <p><strong>Fecha de Nacimiento:</strong> 29 diciembre 2005</p>
-        <p><strong>Dirección:</strong> Villa liliana Mz T #37</p>
-        <p><strong>Teléfono:</strong> 3135881662</p>
-        <p><strong>Correo Electrónico:</strong> Ncarmonagiraldo@gmail.com</p>
-        
-        
+        <div class="header">
+            <img src="https://i.pravatar.cc/150?u=nicolas.carmona" alt="Foto de Perfil Profesional" class="profile-img">
+            <h1 class="main-title">Nicolas Santiago Carmona Giraldo</h1>
+            <p class="subtitle">Desarrollador de Software Apasionado | Innovador y Orientado a Resultados</p>
+        </div>
 
-        <h2>Educación</h2>
-        <p><strong>Grado:</strong> Bachiller </p>
-        <p><strong>Institución:</strong> Gustavo Matamoros</p>
-        <p><strong>Periodo:</strong> 2012 - 2023</p>
-        <p><strong>Descripción:</strong> Me gradué del colegio titulado en técnico de asesoría comercial y actualmente estudio ingeniería de software en la Universidad Alexander von Humboldt.</p>
+        <div class="section contact-info">
+            <h2 class="section-title">Datos Personales</h2>
+            <p><strong>Fecha de Nacimiento:</strong> 29 de diciembre de 2005</p>
+            <p><strong>Ubicación:</strong> Armenia, Quindío, Colombia</p>
+            <p><strong>Teléfono:</strong> <a href="tel:+573135881662">+57 3135881662</a></p>
+            <p><strong>Correo Electrónico:</strong> <a href="mailto:Ncarmonagiraldo@gmail.com">Ncarmonagiraldo@gmail.com</a></p>
+            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/nicolas-carmona-ficticio" target="_blank">linkedin.com/in/nicolas-carmona-ficticio</a></p>
+            <p><strong>GitHub:</strong> <a href="https://github.com/nicolascarmona-dev-ficticio" target="_blank">github.com/nicolascarmona-dev-ficticio</a></p>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Educación</h2>
+            <div class="education-item">
+                <p class="item-title">Ingeniería de Software (En curso)</p>
+                <p class="item-subtitle">Universidad Alexander von Humboldt, Armenia</p>
+                <p class="item-date">Agosto 2023 – Presente (Fecha de graduación esperada: Diciembre 2027)</p>
+                <p>Cursando materias relevantes como Estructuras de Datos, Algoritmos Avanzados, Desarrollo Web Full-Stack, y Bases de Datos.</p>
+            </div>
+            <div class="education-item">
+                <p class="item-title">Bachiller Técnico con Énfasis en Asesoría Comercial</p>
+                <p class="item-subtitle">Institución Educativa Gustavo Matamoros D'Costa</p>
+                <p class="item-date">2012 – Diciembre 2023</p>
+                <p>Graduado con honores, adquiriendo bases en comunicación efectiva y estrategias comerciales.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Experiencia Profesional</h2>
+            <div class="experience-item">
+                <p class="item-title">Desarrollador de Software Intern</p>
+                <p class="item-subtitle">Tech Solutions Inc. (Fictional)</p>
+                <p class="item-date">Junio 2024 – Agosto 2024 (Pasantía de Verano)</p>
+                <ul>
+                    <li>Colaboré en el desarrollo de una aplicación web para gestión de clientes utilizando React y Node.js.</li>
+                    <li>Participé en el ciclo completo de vida del desarrollo de software, desde la planificación y diseño hasta las pruebas y el despliegue.</li>
+                    <li>Implementé nuevas funcionalidades y corregí errores en el frontend y backend bajo la supervisión de ingenieros senior.</li>
+                    <li>Adquirí experiencia en metodologías ágiles (Scrum) y herramientas de control de versiones (Git).</li>
+                </ul>
+            </div>
+            <div class="experience-item">
+                <p class="item-title">Asistente de Desarrollo Web (Proyecto Freelance)</p>
+                <p class="item-subtitle">Plataforma Educativa Online (Fictional)</p>
+                <p class="item-date">Enero 2024 – Mayo 2024</p>
+                <ul>
+                    <li>Ayudé en la personalización y mantenimiento de un sitio web basado en WordPress para un cliente.</li>
+                    <li>Realicé modificaciones de CSS y HTML para mejorar la interfaz de usuario y la experiencia de navegación.</li>
+                    <li>Integré plugins y optimicé el rendimiento básico del sitio.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Habilidades Técnicas</h2>
+            <ul class="skills-list">
+                <li>Python</li>
+                <li>Java</li>
+                <li>JavaScript</li>
+                <li>C++</li>
+                <li>HTML5</li>
+                <li>CSS3</li>
+                <li>React</li>
+                <li>Node.js</li>
+                <li>Express.js</li>
+                <li>SQL</li>
+                <li>MongoDB</li>
+                <li>Git</li>
+                <li>GitHub</li>
+                <li>Docker (Básico)</li>
+                <li>AWS (EC2, S3 - Básico)</li>
+                <li>Metodologías Ágiles (Scrum)</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Proyectos Personales</h2>
+            <div class="project-item">
+                <p class="item-title">Gestor de Tareas "TaskMaster"</p>
+                <p class="item-subtitle"><a href="https://github.com/nicolascarmona-dev-ficticio/taskmaster" target="_blank">github.com/nicolascarmona-dev-ficticio/taskmaster</a></p>
+                <p>Una aplicación web full-stack para la gestión de tareas personales y proyectos pequeños. Permite a los usuarios crear, organizar y rastrear el progreso de sus tareas. Desarrollado con React para el frontend, Node.js/Express para el backend y MongoDB como base de datos.</p>
+                <p><strong>Tecnologías:</strong> React, Node.js, Express, MongoDB, JWT para autenticación.</p>
+            </div>
+            <div class="project-item">
+                <p class="item-title">Blog Personal con CMS Básico</p>
+                <p class="item-subtitle"><a href="https://github.com/nicolascarmona-dev-ficticio/my-blog" target="_blank">github.com/nicolascarmona-dev-ficticio/my-blog</a></p>
+                <p>Desarrollo de un blog personal utilizando Python (Flask) y SQLite. Incluye funcionalidades básicas de un CMS como creación, edición y eliminación de posts, así como un sistema de comentarios simple. Enfocado en aprender los fundamentos del desarrollo backend con Python.</p>
+                <p><strong>Tecnologías:</strong> Python, Flask, SQLite, HTML, CSS, Jinja2.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Idiomas</h2>
+            <ul>
+                <li><strong>Español:</strong> Nativo</li>
+                <li><strong>Inglés:</strong> Avanzado (C1) - Capaz de mantener conversaciones técnicas fluidas y comprender documentación compleja.</li>
+            </ul>
+        </div>
     </div>
 </body>
 </html>
