@@ -4,145 +4,337 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hoja de Vida - Nicolas Carmona</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Raleway:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #007bff;
+            --primary-hover-color: #0056b3;
+            --secondary-color: #6c757d;
+            --background-color: #f0f2f5;
+            --card-background-color: #ffffff;
+            --text-color: #333;
+            --text-light-color: #555;
+            --border-color: #eee;
+            --shadow-color: rgba(0,0,0,0.1);
+            --animation-duration: 0.5s;
+            --stagger-delay: 0.1s;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f2f5;
-            color: #333;
-            line-height: 1.6;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.7;
+            overflow-x: hidden; /* Prevent horizontal scrollbars from animations */
         }
+
         .container {
-            max-width: 800px;
-            margin: 30px auto;
-            background-color: #fff;
-            padding: 20px 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            max-width: 850px; /* Slightly wider for more space */
+            margin: 40px auto;
+            background-color: var(--card-background-color);
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px var(--shadow-color);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: pageLoadAnimation var(--animation-duration) ease-out forwards;
+            animation-delay: 0.2s; /* Delay page load animation slightly */
         }
+
+        @keyframes pageLoadAnimation {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .header {
             text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #eee;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
         }
+
         .profile-img {
-            width: 150px;
-            height: 150px;
+            width: 160px; /* Slightly larger */
+            height: 160px;
             border-radius: 50%;
             object-fit: cover;
-            margin-bottom: 15px;
-            border: 4px solid #007bff;
-        }
-        .main-title {
-            color: #007bff;
-            margin-bottom: 5px;
-            font-size: 2.2em;
-            font-weight: 600;
-        }
-        .subtitle {
-            color: #555;
-            font-size: 1.1em;
-            margin-bottom: 15px;
-        }
-        .section-title {
-            color: #0056b3;
-            border-bottom: 2px solid #007bff;
-            padding-bottom: 8px;
-            margin-top: 25px;
             margin-bottom: 20px;
-            font-size: 1.6em;
+            border: 5px solid var(--primary-color);
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+            transform: scale(0);
+            opacity: 0;
+            animation: profileImgAnimation 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            animation-delay: 0.5s; /* After page load */
         }
+
+        @keyframes profileImgAnimation {
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .main-title {
+            font-family: 'Raleway', sans-serif;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+            font-size: 2.6em; /* Larger */
+            font-weight: 700;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInSlideUp var(--animation-duration) ease-out forwards;
+            animation-delay: 0.8s;
+        }
+
+        .subtitle {
+            color: var(--text-light-color);
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            font-weight: 400;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInSlideUp var(--animation-duration) ease-out forwards;
+            animation-delay: 1s;
+        }
+
+        .section-title {
+            font-family: 'Raleway', sans-serif;
+            color: var(--primary-hover-color);
+            padding-bottom: 10px;
+            margin-top: 30px;
+            margin-bottom: 25px;
+            font-size: 1.8em; /* Slightly larger */
+            font-weight: 600;
+            position: relative;
+            opacity: 0; /* Initial state for animation */
+            transform: translateX(-30px); /* Initial state for animation */
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0; /* Initial width for animation */
+            height: 3px;
+            background-color: var(--primary-color);
+            transition: width 0.5s ease-out;
+        }
+
+        /* Animation class to be added by Intersection Observer */
+        .section-title.is-visible {
+            opacity: 1;
+            transform: translateX(0);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+        .section-title.is-visible::after {
+            width: 50px; /* Animate width to this value */
+        }
+
+
         p {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             font-size: 1em;
+            color: var(--text-light-color);
         }
-        strong {
-            color: #0056b3;
+
+        strong, .item-title { /* .item-title also uses this style */
+            color: var(--primary-hover-color);
             font-weight: 600;
         }
+
         a {
-            color: #007bff;
+            color: var(--primary-color);
             text-decoration: none;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            display: block;
+            margin-top: 2px;
+            right: 0;
+            background: var(--primary-hover-color);
+            transition: width 0.3s ease;
         }
         a:hover {
-            text-decoration: underline;
+            color: var(--primary-hover-color);
         }
+        a:hover::after {
+            width: 100%;
+            left: 0;
+            background: var(--primary-hover-color);
+        }
+
         .section {
-            margin-bottom: 25px;
+            margin-bottom: 30px;
         }
+
         .contact-info p {
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
+        /* Add icons to contact info */
+        .contact-info p strong::before {
+            display: inline-block;
+            margin-right: 8px;
+            font-family: "Font Awesome 5 Free"; /* Placeholder, would need Font Awesome */
+            font-weight: 900;
+        }
+        /* .contact-info p strong[for="email"]::before { content: "\f0e0"; } /* envelope */
+        /* .contact-info p strong[for="linkedin"]::before { content: "\f08c"; } /* linkedin */
+
+
         ul {
-            padding-left: 20px;
-            list-style-type: disc;
+            padding-left: 25px;
+            list-style-type: none; /* Remove default bullets for custom styling if needed */
         }
-        li {
-            margin-bottom: 8px;
+        ul li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 15px; /* Space for custom bullet */
         }
+        ul li::before { /* Custom bullet */
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-size: 1.2em;
+            line-height: 1;
+        }
+
+
         .education-item, .experience-item, .project-item {
-            margin-bottom: 15px;
+            background-color: var(--card-background-color);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px var(--shadow-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0; /* Initial state for animation */
+            transform: translateY(30px); /* Initial state for animation */
         }
+        .education-item:hover, .experience-item:hover, .project-item:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(0, 123, 255, 0.2);
+        }
+
+        /* Animation class for items */
+        .animate-item.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+            transition: opacity var(--animation-duration) ease-out, transform var(--animation-duration) ease-out;
+        }
+
+
         .item-title {
-            font-size: 1.1em;
-            font-weight: 600;
-            color: #333;
+            font-size: 1.2em; /* Larger */
+            margin-bottom: 5px;
         }
         .item-subtitle {
-            font-size: 0.95em;
-            color: #555;
-            margin-bottom: 5px;
+            font-size: 1em;
+            color: var(--secondary-color);
+            margin-bottom: 8px;
+            font-style: italic;
         }
         .item-date {
             font-size: 0.9em;
-            color: #777;
-            font-style: italic;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
         }
+
         .skills-list {
             list-style-type: none;
             padding-left: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
         }
         .skills-list li {
-            display: inline-block;
             background-color: #e9ecef;
-            color: #007bff;
-            padding: 5px 10px;
-            margin-right: 8px;
-            margin-bottom: 8px;
-            border-radius: 4px;
-            font-size: 0.9em;
+            color: var(--primary-color);
+            padding: 8px 15px; /* More padding */
+            border-radius: 20px; /* Pill shape */
+            font-size: 0.95em;
+            font-weight: 500;
+            transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+            opacity: 0; /* Initial state for animation */
+            transform: scale(0.5); /* Initial state for animation */
+            margin-bottom: 0; /* Handled by gap */
+            padding-left: 15px !important; /* Override general li padding */
         }
+        .skills-list li::before { /* Remove bullet from skills */
+            content: none;
+        }
+
+        .skills-list li:hover {
+            transform: scale(1.1);
+            background-color: var(--primary-color);
+            color: var(--card-background-color);
+        }
+
+        /* Animation class for skill items */
+        .skill-item.is-visible {
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity var(--animation-duration) ease-out, transform var(--animation-duration) cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px auto;
+                padding: 20px;
+            }
+            .main-title {
+                font-size: 2em;
+            }
+            .subtitle {
+                font-size: 1em;
+            }
+            .section-title {
+                font-size: 1.5em;
+            }
+            .skills-list {
+                justify-content: center; /* Center skills on smaller screens */
+            }
+        }
+
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <img src="https://i.pravatar.cc/150?u=nicolas.carmona" alt="Foto de Perfil Profesional" class="profile-img">
+            <img src="https://i.pravatar.cc/160?u=nicolas.carmona.cv" alt="Foto de Perfil Profesional" class="profile-img">
             <h1 class="main-title">Nicolas Santiago Carmona Giraldo</h1>
             <p class="subtitle">Desarrollador de Software Apasionado | Innovador y Orientado a Resultados</p>
         </div>
 
         <div class="section contact-info">
-            <h2 class="section-title">Datos Personales</h2>
-            <p><strong>Fecha de Nacimiento:</strong> 29 de diciembre de 2005</p>
-            <p><strong>Ubicación:</strong> Armenia, Quindío, Colombia</p>
-            <p><strong>Teléfono:</strong> <a href="tel:+573135881662">+57 3135881662</a></p>
-            <p><strong>Correo Electrónico:</strong> <a href="mailto:Ncarmonagiraldo@gmail.com">Ncarmonagiraldo@gmail.com</a></p>
-            <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/nicolas-carmona-ficticio" target="_blank">linkedin.com/in/nicolas-carmona-ficticio</a></p>
-            <p><strong>GitHub:</strong> <a href="https://github.com/nicolascarmona-dev-ficticio" target="_blank">github.com/nicolascarmona-dev-ficticio</a></p>
+            <h2 class="section-title animate-on-scroll">Datos Personales</h2>
+            <p class="animate-item"><strong>Fecha de Nacimiento:</strong> 29 de diciembre de 2005</p>
+            <p class="animate-item"><strong>Ubicación:</strong> Armenia, Quindío, Colombia</p>
+            <p class="animate-item"><strong>Teléfono:</strong> <a href="tel:+573135881662">+57 3135881662</a></p>
+            <p class="animate-item"><strong>Correo Electrónico:</strong> <a href="mailto:Ncarmonagiraldo@gmail.com">Ncarmonagiraldo@gmail.com</a></p>
+            <p class="animate-item"><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/nicolas-carmona-ficticio" target="_blank">linkedin.com/in/nicolas-carmona-ficticio</a></p>
+            <p class="animate-item"><strong>GitHub:</strong> <a href="https://github.com/nicolascarmona-dev-ficticio" target="_blank">github.com/nicolascarmona-dev-ficticio</a></p>
         </div>
 
         <div class="section">
-            <h2 class="section-title">Educación</h2>
-            <div class="education-item">
+            <h2 class="section-title animate-on-scroll">Educación</h2>
+            <div class="education-item animate-item">
                 <p class="item-title">Ingeniería de Software (En curso)</p>
                 <p class="item-subtitle">Universidad Alexander von Humboldt, Armenia</p>
                 <p class="item-date">Agosto 2023 – Presente (Fecha de graduación esperada: Diciembre 2027)</p>
                 <p>Cursando materias relevantes como Estructuras de Datos, Algoritmos Avanzados, Desarrollo Web Full-Stack, y Bases de Datos.</p>
             </div>
-            <div class="education-item">
+            <div class="education-item animate-item">
                 <p class="item-title">Bachiller Técnico con Énfasis en Asesoría Comercial</p>
                 <p class="item-subtitle">Institución Educativa Gustavo Matamoros D'Costa</p>
                 <p class="item-date">2012 – Diciembre 2023</p>
@@ -151,8 +343,8 @@
         </div>
 
         <div class="section">
-            <h2 class="section-title">Experiencia Profesional</h2>
-            <div class="experience-item">
+            <h2 class="section-title animate-on-scroll">Experiencia Profesional</h2>
+            <div class="experience-item animate-item">
                 <p class="item-title">Desarrollador de Software Intern</p>
                 <p class="item-subtitle">Tech Solutions Inc. (Fictional)</p>
                 <p class="item-date">Junio 2024 – Agosto 2024 (Pasantía de Verano)</p>
@@ -163,7 +355,7 @@
                     <li>Adquirí experiencia en metodologías ágiles (Scrum) y herramientas de control de versiones (Git).</li>
                 </ul>
             </div>
-            <div class="experience-item">
+            <div class="experience-item animate-item">
                 <p class="item-title">Asistente de Desarrollo Web (Proyecto Freelance)</p>
                 <p class="item-subtitle">Plataforma Educativa Online (Fictional)</p>
                 <p class="item-date">Enero 2024 – Mayo 2024</p>
@@ -176,36 +368,36 @@
         </div>
 
         <div class="section">
-            <h2 class="section-title">Habilidades Técnicas</h2>
+            <h2 class="section-title animate-on-scroll">Habilidades Técnicas</h2>
             <ul class="skills-list">
-                <li>Python</li>
-                <li>Java</li>
-                <li>JavaScript</li>
-                <li>C++</li>
-                <li>HTML5</li>
-                <li>CSS3</li>
-                <li>React</li>
-                <li>Node.js</li>
-                <li>Express.js</li>
-                <li>SQL</li>
-                <li>MongoDB</li>
-                <li>Git</li>
-                <li>GitHub</li>
-                <li>Docker (Básico)</li>
-                <li>AWS (EC2, S3 - Básico)</li>
-                <li>Metodologías Ágiles (Scrum)</li>
+                <li class="skill-item">Python</li>
+                <li class="skill-item">Java</li>
+                <li class="skill-item">JavaScript</li>
+                <li class="skill-item">C++</li>
+                <li class="skill-item">HTML5</li>
+                <li class="skill-item">CSS3</li>
+                <li class="skill-item">React</li>
+                <li class="skill-item">Node.js</li>
+                <li class="skill-item">Express.js</li>
+                <li class="skill-item">SQL</li>
+                <li class="skill-item">MongoDB</li>
+                <li class="skill-item">Git</li>
+                <li class="skill-item">GitHub</li>
+                <li class="skill-item">Docker (Básico)</li>
+                <li class="skill-item">AWS (EC2, S3 - Básico)</li>
+                <li class="skill-item">Metodologías Ágiles (Scrum)</li>
             </ul>
         </div>
 
         <div class="section">
-            <h2 class="section-title">Proyectos Personales</h2>
-            <div class="project-item">
+            <h2 class="section-title animate-on-scroll">Proyectos Personales</h2>
+            <div class="project-item animate-item">
                 <p class="item-title">Gestor de Tareas "TaskMaster"</p>
                 <p class="item-subtitle"><a href="https://github.com/nicolascarmona-dev-ficticio/taskmaster" target="_blank">github.com/nicolascarmona-dev-ficticio/taskmaster</a></p>
                 <p>Una aplicación web full-stack para la gestión de tareas personales y proyectos pequeños. Permite a los usuarios crear, organizar y rastrear el progreso de sus tareas. Desarrollado con React para el frontend, Node.js/Express para el backend y MongoDB como base de datos.</p>
                 <p><strong>Tecnologías:</strong> React, Node.js, Express, MongoDB, JWT para autenticación.</p>
             </div>
-            <div class="project-item">
+            <div class="project-item animate-item">
                 <p class="item-title">Blog Personal con CMS Básico</p>
                 <p class="item-subtitle"><a href="https://github.com/nicolascarmona-dev-ficticio/my-blog" target="_blank">github.com/nicolascarmona-dev-ficticio/my-blog</a></p>
                 <p>Desarrollo de un blog personal utilizando Python (Flask) y SQLite. Incluye funcionalidades básicas de un CMS como creación, edición y eliminación de posts, así como un sistema de comentarios simple. Enfocado en aprender los fundamentos del desarrollo backend con Python.</p>
@@ -214,12 +406,63 @@
         </div>
 
         <div class="section">
-            <h2 class="section-title">Idiomas</h2>
-            <ul>
+            <h2 class="section-title animate-on-scroll">Idiomas</h2>
+            <ul class="animate-item">
                 <li><strong>Español:</strong> Nativo</li>
                 <li><strong>Inglés:</strong> Avanzado (C1) - Capaz de mantener conversaciones técnicas fluidas y comprender documentación compleja.</li>
             </ul>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const options = {
+                root: null, // viewport
+                rootMargin: '0px',
+                threshold: 0.1 // 10% of item visible
+            };
+
+            const observerCallback = (entries, observer) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        // Add 'is-visible' class to trigger animation
+                        entry.target.classList.add('is-visible');
+
+                        // For staggered animations, apply delay
+                        if (entry.target.classList.contains('animate-item') || entry.target.classList.contains('skill-item')) {
+                            let delay = 0;
+                            // Check if it's part of a list that needs staggering
+                            // This simple version applies delay based on its order of observation,
+                            // more complex staggering might need grouping elements
+                            if (entry.target.parentElement.classList.contains('skills-list')) {
+                                // find index in parent
+                                delay = Array.from(entry.target.parentElement.children).indexOf(entry.target) * parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--stagger-delay') || '0.1s');
+                            } else {
+                                delay = index * parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--stagger-delay') || '0.1s');
+                            }
+                             entry.target.style.transitionDelay = `${delay}s`;
+                        }
+
+                        observer.unobserve(entry.target); // Optional: stop observing after animation
+                    }
+                });
+            };
+
+            const observer = new IntersectionObserver(observerCallback, options);
+
+            // Observe elements with .animate-on-scroll for section titles
+            const titlesToAnimate = document.querySelectorAll('.section-title.animate-on-scroll');
+            titlesToAnimate.forEach(el => observer.observe(el));
+
+            // Observe elements with .animate-item for general items
+            const itemsToAnimate = document.querySelectorAll('.animate-item');
+            itemsToAnimate.forEach(el => observer.observe(el));
+
+            // Observe skill items
+            const skillItemsToAnimate = document.querySelectorAll('.skill-item');
+            skillItemsToAnimate.forEach(el => observer.observe(el));
+
+        });
+    </script>
 </body>
 </html>
